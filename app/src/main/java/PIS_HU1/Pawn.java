@@ -4,14 +4,17 @@ import processing.core.PApplet;
 public class Pawn {
     PApplet a;
     int y, x;
+    int playerTurn;
 
     public Pawn ( PApplet a,boolean black,int x, int y){
         if(black){
+            playerTurn=1;
             a.fill(0,0,0);
-            a.ellipse(this.y=y,this.x=x,40,40);
+            a.ellipse(this.y=y,this.x=x,60,60);
         }else{
+            playerTurn=2;
             a.fill(255,255,255);
-            a.ellipse(this.y=y,this.x=x,40,40);
+            a.ellipse(this.y=y,this.x=x,60,60);
         }
     }
 
