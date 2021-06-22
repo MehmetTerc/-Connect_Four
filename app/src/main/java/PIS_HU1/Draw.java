@@ -2,78 +2,108 @@ package PIS_HU1;
 
 import processing.core.PApplet;
 
+
+
 public class Draw extends PApplet {
-
-    boolean white = true;
-    boolean black = false;
-    int width = 600;
-    int height = 600;
-    int xVar = width / 8;
-    int yVar = height / 8;
-    Pawn[][] gameBoard = new Pawn[8][8];
-
-
+    GameEngine game = new GameEngine();
     public static void main(String[] args) {
         PApplet.runSketch(new String[]{""}, new Draw());
     }
 
     public void settings() {
-        size(width, height);
+        size(800, 800);
     }
 
     public void setup() {
-        noStroke();
+        background(3, 90, 252);
+        game.reset();
         drawBoard();
-        startBoard();
 
     }
 
     public void draw() {
-        noStroke();
+        drawBoard();
+    }
 
+    public void drawBoard(){
+        for(int i=1;i<8;i++){
+            textSize(30);
+            fill(255);
+            text(i,105*i,40);
+        }
+        line(0,60,800,60);
+        int x = 106;
+        int y = 120;
+        for(int h = 5; h>= 0 ; h--){
+            int w=h;
+            int i = 1;
+            while(w<49){
+                long mask = 1L<<w;
+                if((game.playerBoard[0]&mask)!= 0L){
+                    fill(252, 215, 3);
+                    ellipse(x*i, y,75,75);
+
+                } else if((game.playerBoard[1]&mask)!= 0L){
+                    fill(252, 44, 3);
+                    ellipse(x*i, y,75,75);
+
+                } else {
+                    fill(255);
+                    ellipse(x*i, y,75,75);
+                }
+                i++;
+                w += 7;
+            }
+            y += 100;
+        }
+        if(game.isWin(game.playerBoard[0])){
+            background(0);
+            textSize(50);
+            fill(255);
+            text("Player 1 WON",400,400);
+        } else if(game.isWin(game.playerBoard[1])){
+            background(0);
+            textSize(50);
+            fill(255);
+            text("Player 2 WON",400,400);
+        }
 
     }
 
-    public void drawBoard() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if ((i + j + 1) % 2 != 0) {
-                    fill(209, 139, 71);
-                } else {
-                    fill(255, 206, 158);
-                }
-                rect(i * xVar, j * yVar, (i + 1) * xVar, (j + 1) * yVar);
-            }
+    @Override
+    public void keyPressed() {
+        if(key=='0'){
+            System.out.println(game.toString());
+        }
+        if(key=='1'){
+            game.makeMove(0);
+        }
+        if(key=='2'){
+            game.makeMove(1);
+        }
+        if(key=='3'){
+            game.makeMove(2);
+        }
+        if(key=='4'){
+            game.makeMove(3);
+        }
+        if(key=='5'){
+            game.makeMove(4);
+        }
+        if(key=='6'){
+            game.makeMove(5);
+        }
+        if(key=='7'){
+            game.makeMove(6);
+        }
+        if(key=='r'){
+            background(3, 90, 252);
+            game.reset();
+            drawBoard();
+        }
+        if(key=='u'){
+           game.undoMove();
         }
     }
-
-    public void startBoard() {
-        gameBoard[0][1] = new Pawn(this, false, (height / 8) - (xVar / 2), 2 *(height / 8) - (yVar / 2));
-        gameBoard[0][3] = new Pawn(this, false, (height / 8) - (xVar / 2), 4 * (height / 8) - (yVar / 2));
-        gameBoard[0][5] = new Pawn(this, false, (height / 8) - (xVar / 2), 6 * (height / 8) - (yVar / 2));
-        gameBoard[0][7] = new Pawn(this, false, (height / 8) - (xVar / 2), 8 * (height / 8) - (yVar / 2));
-        gameBoard[1][0] = new Pawn(this, false, 2 * (height / 8) - (xVar / 2),  (height / 8) - (yVar / 2));
-        gameBoard[1][2] = new Pawn(this, false, 2 * (height / 8) - (xVar / 2), 3 * (height / 8) - (yVar / 2));
-        gameBoard[1][4] = new Pawn(this, false, 2 * (height / 8) - (xVar / 2), 5* (height / 8) - (yVar / 2));
-        gameBoard[1][6] = new Pawn(this, false, 2 * (height / 8) - (xVar / 2), 7 * (height / 8) - (yVar / 2));
-        gameBoard[2][1] = new Pawn(this, false, 3 * (height / 8) - (xVar / 2), 2*(height / 8) - (yVar / 2));
-        gameBoard[2][3] = new Pawn(this, false, 3 * (height / 8) - (xVar / 2), 4* (height / 8) - (yVar / 2));
-        gameBoard[2][5] = new Pawn(this, false, 3 * (height / 8) - (xVar / 2), 6* (height / 8) - (yVar / 2));
-        gameBoard[2][7] = new Pawn(this, false, 3 * (height / 8) - (xVar / 2), 8 * (height / 8) - (yVar / 2));
-        gameBoard[5][0] = new Pawn(this, true, 6 * (height / 8) - (xVar / 2), (height / 8) - (yVar / 2));
-        gameBoard[5][2] = new Pawn(this, true, 6 * (height / 8) - (xVar / 2), 3 * (height / 8) - (yVar / 2));
-        gameBoard[5][4] = new Pawn(this, true, 6 * (height / 8) - (xVar / 2), 5 * (height / 8) - (yVar / 2));
-        gameBoard[5][6] = new Pawn(this, true, 6 * (height / 8) - (xVar / 2), 7 * (height / 8) - (yVar / 2));
-        gameBoard[6][1] = new Pawn(this, true, 7 * (height / 8) - (xVar / 2), 2 * (height / 8) - (yVar / 2));
-        gameBoard[6][3] = new Pawn(this, true, 7 * (height / 8) - (xVar / 2), 4 * (height / 8) - (yVar / 2));
-        gameBoard[6][5] = new Pawn(this, true, 7 * (height / 8) - (xVar / 2), 6 * (height / 8) - (yVar / 2));
-        gameBoard[6][7] = new Pawn(this, true, 7 * (height / 8) - (xVar / 2), 8 * (height / 8) - (yVar / 2));
-        gameBoard[7][0] = new Pawn(this, true, 8 * (height / 8) - (xVar / 2), (height / 8) - (yVar / 2));
-        gameBoard[7][2] = new Pawn(this, true, 8 * (height / 8) - (xVar / 2), 3 * (height / 8) - (yVar / 2));
-        gameBoard[7][4] = new Pawn(this, true, 8 * (height / 8) - (xVar / 2), 5 * (height / 8) - (yVar / 2));
-        gameBoard[7][6] = new Pawn(this, true, 8 * (height / 8) - (xVar / 2), 7 * (height / 8) - (yVar / 2));
-    }
-
-
 }
 
