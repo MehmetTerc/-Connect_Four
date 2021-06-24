@@ -1,7 +1,9 @@
 package PIS_HU1;
 
+
 import processing.core.PApplet;
 
+import java.util.Arrays;
 
 
 public class Draw extends PApplet {
@@ -77,6 +79,7 @@ public class Draw extends PApplet {
         }
         if(key=='1'){
             game.makeMove(0);
+
         }
         if(key=='2'){
             game.makeMove(1);
@@ -102,8 +105,26 @@ public class Draw extends PApplet {
             drawBoard();
         }
         if(key=='u'){
-           game.undoMove();
+            game.undoMove();
+        }
+        if(key == 't'){
+            GameEngine test = new GameEngine();
+            test.playerBoard = Arrays.copyOf(game.playerBoard, game.playerBoard.length);
+            test.move = Arrays.copyOf(game.move, game.move.length);
+            test.heightCol = Arrays.copyOf(game.heightCol, game.heightCol.length);
+            test.count = game.count;
+            game.makeMove(test.chooseBestMove(test,100));
+        }
+        if(key == 't'){
+            GameEngine test = new GameEngine();
+            test.playerBoard = Arrays.copyOf(game.playerBoard, game.playerBoard.length);
+            test.move = Arrays.copyOf(game.move, game.move.length);
+            test.heightCol = Arrays.copyOf(game.heightCol, game.heightCol.length);
+            test.count = game.count;
+            game.makeMove(test.chooseBestMove(test,100));
         }
     }
 }
+
+
 
