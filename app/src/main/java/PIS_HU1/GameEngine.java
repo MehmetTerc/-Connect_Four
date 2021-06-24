@@ -1,6 +1,11 @@
 package PIS_HU1;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
+
 public class GameEngine implements GameInterface{
     final private int height = 6;
     final private int width = 7;
@@ -16,6 +21,75 @@ public class GameEngine implements GameInterface{
     int count = 0;
 
     //Montecarlo Bot
+    public int playRandomly(GameEngine board){
+        int value = board.isWin(board.playerBoard[0]) ? 1 : board.isWin(board.playerBoard[1]) ? -1 : 0;
+        Random rnd = new Random();
+        while(value == 0){
+            ArrayList<Integer> moves = board.listMoves();
+            if(moves.isEmpty()) return 0;
+            int randomMove = moves.get(rnd.nextInt(moves.size()));
+            board.makeMove(randomMove);
+
+            value = board.isWin(board.playerBoard[0]) ? 1 : board.isWin(board.playerBoard[1]) ? -1 : 0;
+        }
+        return value;
+    }
+
+    public int[] simulatePlays(GameEngine board, int number){
+        int[] counter = {0,0,0};
+        int count = board.count;
+        while (number > 0){
+            //////// CLONE
+            GameEngine test = new GameEngine();
+            test.playerBoard = Arrays.copyOf(board.playerBoard, board.playerBoard.length); // NUR CLONE
+            test.move = Arrays.copyOf(board.move, board.move.length);
+            test.heightCol = Arrays.copyOf(board.heightCol, board.heightCol.length);
+            test.count = count;
+            ////////
+            counter[playRandomly(test) + 1] +=1;
+            number--;
+        }
+
+        return counter;
+    }
+
+
+    public ArrayList<int[]> evaluateMoves(GameEngine board, int number){
+        ArrayList<Integer> moves = board.listMoves();
+        ArrayList<int[]> values = new ArrayList<>();
+        for(int move : moves){
+            board.makeMove(move);
+            values.add(simulatePlays(board,number));
+            board.undoMove();
+        }
+        return values;
+    }
+
+
+    public int chooseBestMove(GameEngine board, int number){
+        ArrayList<Integer> moves = board.listMoves();
+        ArrayList<int[]> evaluate = board.evaluateMoves(board,number);
+        int[] values = new int[evaluate.size()];
+        for(int i = 0; i<evaluate.size();i++){
+            int turn = (board.count & 1) == 0 ? 1 : -1;
+            values[i] = evaluate.get(i)[2] * turn;
+
+        }
+
+        int maxValue = Arrays.stream(values).max().getAsInt();
+        int bestIndex = -1;
+        for(int j = 0; j<values.length; j++){
+            if (values[j] == maxValue){
+                bestIndex = j;
+            }
+        }
+
+        return moves.get(bestIndex);
+
+    }
+
+
+
 
     @Override
     public boolean isWin(long board) {
@@ -28,6 +102,18 @@ public class GameEngine implements GameInterface{
         return false;
     }
 
+    public ArrayList<Integer> listMoves() {
+        ArrayList<Integer> moves = new ArrayList<>();
+        long TOP = 0b1000000_1000000_1000000_1000000_1000000_1000000_1000000L;
+        for(int col = 0; col <= 6; col++) {
+            if ((TOP & (1L << heightCol[col])) == 0) moves.add(col);
+        }
+        return moves;
+    }
+
+
+
+
     @Override
     public void makeMove(int col) {
         if(!isPlayable(col)){
@@ -35,7 +121,6 @@ public class GameEngine implements GameInterface{
             return;
         }
         long moving = 1L << heightCol[col]++;
-        System.out.println(heightCol[col]);
         playerBoard[count & 1] ^= moving;
         move[count++] = col;
     }
