@@ -4,11 +4,9 @@ package PIS_HU1;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;
-
 import java.util.Arrays;
 
 public class Draw extends PApplet {
-
     GameEngine game = new GameEngine();
     boolean bot = false;
     boolean drawGame=false;
@@ -17,15 +15,18 @@ public class Draw extends PApplet {
     }
 
     public void settings() {
+
         size(650, 680);
 
     }
 
     public void setup() {
-        background(3, 90, 252);
+        PImage icon = loadImage("C:\\Users\\Mehmet\\IdeaProjects\\PIS_HU1\\app\\connect-four.png");
         game.reset();
         mainMenu();
-        surface.setTitle("4 Gewinnt!");
+        surface.setTitle("Connect Four!");
+        surface.setIcon(icon);
+
     }
 
     public void draw() {
@@ -68,24 +69,33 @@ public class Draw extends PApplet {
         }
         if (game.isWin(game.playerBoard[0])) {
             background(3, 90, 252);
-            textSize(50);
+            textSize(60);
             fill(255);
-            text("Player 1 WON", 400, 400);
+            text("Player 2 WON",100,100);
+            textSize(30);
+            text("Press R for restart",100,230);
         } else if (game.isWin(game.playerBoard[1])) {
             background(3, 90, 252);
-            textSize(30);
+            textSize(60);
             fill(255);
-            if(bot) text("Bot WON", 200, 230);
-            else text("Player 2 WON", 200,230);
+            if(bot) text("Bot WON", 100, 100);
+            else text("Player 2 WON", 100,100);
+            textSize(30);
+            text("Press R for restart",100,230);
         }
     }
 
     public void mainMenu(){
-        textSize(30);
+        PImage start = loadImage("app/PinClipart.com_tired-parents-clip-art_1966405.png");
+        background(50,96,114);
+        textSize(60);
         fill(255);
-        text("4 WINS",200,200);
-        text("Press P to play against a Player",200,230);
-        text("Press B to play against a Bot",200,260);
+        text("Connect Four",100,100);
+        textSize(30);
+        text("Press P to play against a Player",100,230);
+        text("Press B to play against a Bot",100,280);
+        start.resize(275,275);
+        image(start,175,350);
     }
 
     @Override
