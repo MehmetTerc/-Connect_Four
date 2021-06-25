@@ -45,11 +45,9 @@ public class GameEngine implements GameInterface{
             test.move = Arrays.copyOf(board.move, board.move.length);
             test.heightCol = Arrays.copyOf(board.heightCol, board.heightCol.length);
             test.count = count;
-            ////////
             counter[playRandomly(test) + 1] +=1;
             number--;
         }
-
         return counter;
     }
 
@@ -83,13 +81,8 @@ public class GameEngine implements GameInterface{
                 bestIndex = j;
             }
         }
-
         return moves.get(bestIndex);
-
     }
-
-
-
 
     @Override
     public boolean isWin(long board) {
@@ -111,13 +104,10 @@ public class GameEngine implements GameInterface{
         return moves;
     }
 
-
-
-
     @Override
     public void makeMove(int col) {
         if(!isPlayable(col)){
-            System.out.println("Geht nicht");
+            System.out.println("Not Possible");
             return;
         }
         long moving = 1L << heightCol[col]++;
@@ -138,7 +128,6 @@ public class GameEngine implements GameInterface{
         playerBoard[1]=0L;
         for(int i=0; i<width;i++){
             heightCol[i]=heightBottom*i;
-
         }
     }
 
@@ -169,13 +158,4 @@ public class GameEngine implements GameInterface{
         return s;
     }
 
-
 }
-
-
-
-
-
-
-
-
