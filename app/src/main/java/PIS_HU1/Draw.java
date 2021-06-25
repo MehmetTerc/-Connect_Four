@@ -31,7 +31,7 @@ public class Draw extends PApplet {
 
     public void draw() {
         if(drawGame) {
-            background(3, 90, 252);
+            background(50,96,114);
             drawBoard();
         }
     }
