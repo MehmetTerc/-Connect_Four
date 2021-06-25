@@ -3,12 +3,32 @@
  */
 package PIS_HU1;
 
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    private GameEngine game = new GameEngine();
+
+    //gewinnen möglich
+    //methodes work
+    //listMoves
+    //make Move
+    // win
+    // undoMove
+    // falscher Zug
+    //board
+    //is legal
+    //is playable
+    // ungefülltes board
+
+    @Test
+    public void emptyBoard(){
+        Assert.assertArrayEquals(game.playerBoard,new long[]{0L,0L});
+    }
+
+    @Test
+    public void testMove(){
+        game.makeMove(1);
     }
 }

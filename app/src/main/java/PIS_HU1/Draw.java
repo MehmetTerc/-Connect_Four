@@ -10,8 +10,6 @@ import java.util.Arrays;
 public class Draw extends PApplet {
 
     GameEngine game = new GameEngine();
-    private int gameMode;
-    boolean menu=true;
     boolean bot = false;
     boolean drawGame=false;
     public static void main(String[] args) {
@@ -69,15 +67,16 @@ public class Draw extends PApplet {
             y += 100;
         }
         if (game.isWin(game.playerBoard[0])) {
-            background(0);
+            background(3, 90, 252);
             textSize(50);
             fill(255);
             text("Player 1 WON", 400, 400);
         } else if (game.isWin(game.playerBoard[1])) {
-            background(0);
-            textSize(50);
+            background(3, 90, 252);
+            textSize(30);
             fill(255);
-            text("Player 2 WON", 400, 400);
+            if(bot) text("Bot WON", 200, 230);
+            else text("Player 2 WON", 200,230);
         }
     }
 
