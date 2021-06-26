@@ -6,6 +6,4 @@ public interface GameInterface {
     void makeMove(int col);
     void undoMove();
     String toString();
-
-
 }

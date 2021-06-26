@@ -29,7 +29,6 @@ public class GameEngine implements GameInterface{
             if(moves.isEmpty()) return 0;
             int randomMove = moves.get(rnd.nextInt(moves.size()));
             board.makeMove(randomMove);
-
             value = board.isWin(board.playerBoard[0]) ? 1 : board.isWin(board.playerBoard[1]) ? -1 : 0;
         }
         return value;
@@ -39,20 +38,16 @@ public class GameEngine implements GameInterface{
         int[] counter = {0,0,0};
         int count = board.count;
         while (number > 0){
-            //////// CLONE
             GameEngine test = new GameEngine();
             test.playerBoard = Arrays.copyOf(board.playerBoard, board.playerBoard.length); // NUR CLONE
             test.move = Arrays.copyOf(board.move, board.move.length);
             test.heightCol = Arrays.copyOf(board.heightCol, board.heightCol.length);
             test.count = count;
-            ////////
             counter[playRandomly(test) + 1] +=1;
             number--;
         }
-
         return counter;
     }
-
 
     public ArrayList<int[]> evaluateMoves(GameEngine board, int number){
         ArrayList<Integer> moves = board.listMoves();
@@ -65,7 +60,6 @@ public class GameEngine implements GameInterface{
         return values;
     }
 
-
     public int chooseBestMove(GameEngine board, int number){
         ArrayList<Integer> moves = board.listMoves();
         ArrayList<int[]> evaluate = board.evaluateMoves(board,number);
@@ -73,9 +67,7 @@ public class GameEngine implements GameInterface{
         for(int i = 0; i<evaluate.size();i++){
             int turn = (board.count & 1) == 0 ? 1 : -1;
             values[i] = evaluate.get(i)[2] * turn;
-
         }
-
         int maxValue = Arrays.stream(values).max().getAsInt();
         int bestIndex = -1;
         for(int j = 0; j<values.length; j++){
@@ -83,20 +75,15 @@ public class GameEngine implements GameInterface{
                 bestIndex = j;
             }
         }
-
         return moves.get(bestIndex);
-
     }
-
-
-
 
     @Override
     public boolean isWin(long board) {
         int[] directions = {1, 7, 6, 8};
         long bb;
         for(int direction : directions) {
-            bb = board& (board >> direction);
+            bb = board & (board >> direction);
             if ((bb & (bb >> (2 * direction))) != 0) return true;
         }
         return false;
@@ -111,18 +98,16 @@ public class GameEngine implements GameInterface{
         return moves;
     }
 
-
-
-
     @Override
     public void makeMove(int col) {
         if(!isPlayable(col)){
-            System.out.println("Geht nicht");
+            System.out.println("Not Possible");
             return;
         }
         long moving = 1L << heightCol[col]++;
         playerBoard[count & 1] ^= moving;
         move[count++] = col;
+        System.out.println(Long.toBinaryString(playerBoard[0])+" "+Long.toBinaryString(playerBoard[0]));
     }
 
     @Override
@@ -138,7 +123,6 @@ public class GameEngine implements GameInterface{
         playerBoard[1]=0L;
         for(int i=0; i<width;i++){
             heightCol[i]=heightBottom*i;
-
         }
     }
 
@@ -168,14 +152,4 @@ public class GameEngine implements GameInterface{
         }
         return s;
     }
-
-
 }
-
-
-
-
-
-
-
-
