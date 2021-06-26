@@ -49,7 +49,6 @@ public class GameEngine implements GameInterface{
         return counter;
     }
 
-
     public ArrayList<int[]> evaluateMoves(GameEngine board, int number){
         ArrayList<Integer> moves = board.listMoves();
         ArrayList<int[]> values = new ArrayList<>();
@@ -108,6 +107,7 @@ public class GameEngine implements GameInterface{
         long moving = 1L << heightCol[col]++;
         playerBoard[count & 1] ^= moving;
         move[count++] = col;
+        System.out.println(Long.toBinaryString(playerBoard[0])+" "+Long.toBinaryString(playerBoard[0]));
     }
 
     @Override

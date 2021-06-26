@@ -30,5 +30,27 @@ public class AppTest {
     @Test
     public void testMove(){
         game.makeMove(1);
+        Assert.assertEquals("1",Long.toBinaryString(game.playerBoard[0]));
+    }
+
+    @Test
+    public void testWin(){
+        //for player 1
+        //1000000100000010000001 horizontal win
+        game.playerBoard[0]=Long.parseLong("1000000100000010000001",2);
+        assertTrue(game.isWin(game.playerBoard[0]));
+
+    }
+
+    @Test
+    public void testUndoMove(){
+        game.makeMove(1);
+        game.undoMove();
+        Assert.assertEquals(0L,game.playerBoard[0]);
+    }
+
+    @Test
+    public void isPlayable(){
+        Assert.assertTrue(game.isPlayable(2));
     }
 }

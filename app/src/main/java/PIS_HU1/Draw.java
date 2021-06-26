@@ -21,7 +21,7 @@ public class Draw extends PApplet {
     }
 
     public void setup() {
-        PImage icon = loadImage("C:\\Users\\Mehmet\\IdeaProjects\\PIS_HU1\\app\\connect-four.png");
+        PImage icon = loadImage("C:\\Users\\Mehmet\\IdeaProjects\\PIS_HU1\\app\\Pictures\\connect-four.png");
         game.reset();
         mainMenu();
         surface.setTitle("Connect Four!");
@@ -86,7 +86,7 @@ public class Draw extends PApplet {
     }
 
     public void mainMenu(){
-        PImage start = loadImage("app/PinClipart.com_tired-parents-clip-art_1966405.png");
+        PImage start = loadImage("app/Pictures/PinClipart.com_tired-parents-clip-art_1966405.png");
         background(50,96,114);
         textSize(60);
         fill(255);
