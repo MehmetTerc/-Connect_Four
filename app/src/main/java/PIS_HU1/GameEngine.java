@@ -3,7 +3,6 @@ package PIS_HU1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 public class GameEngine implements GameInterface{
@@ -74,8 +73,6 @@ public class GameEngine implements GameInterface{
         for(int col = 0; col <= 6; col++) {
             if ((TOP & (1L << heightCol[col])) == 0) moves.add(col);
         }
-
-
         return moves;
     }
 
@@ -138,20 +135,20 @@ public class GameEngine implements GameInterface{
 
     @Override
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for(int i=0;i<width;i++){
-            s+=" "+i+" ";
+            s.append(" ").append(i).append(" ");
         }
-        s+= "\n";
+        s.append("\n");
         for(int h=height-1;h>=0;h--){
             int w=h;
             while(w<size1){
                 long mask = 1L<<w;
-                if ((playerBoard[0]&mask)!=0L) s+=" X "; else if ((playerBoard[1]&mask)!=0L) s+=" 0 "; else s+=" . ";
+                if ((playerBoard[0]&mask)!=0L) s.append(" X "); else if ((playerBoard[1]&mask)!=0L) s.append(" 0 "); else s.append(" . ");
                 w+=heightBottom;
             }
-            s+="\n";
+            s.append("\n");
         }
-        return s;
+        return s.toString();
     }
 }
