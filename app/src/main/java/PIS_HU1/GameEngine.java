@@ -69,6 +69,8 @@ public class GameEngine implements GameInterface {
         playerBoard[count & 1] | (1L << heightCol[col])); // Prüft, ob der move spielbar ist.
   }
 
+  // Montecarlo Bot
+
   public ArrayList<Integer> listMoves() {
     ArrayList<Integer> moves = new ArrayList<>();
     long TOP = 0b1000000_1000000_1000000_1000000_1000000_1000000_1000000L;

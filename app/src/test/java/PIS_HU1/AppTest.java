@@ -22,6 +22,8 @@ public class AppTest {
   // is playable
   // ungefülltes board
 
+
+  //Es wird geschaut, ob das Board zu Beginn leer ist oder nicht
   @Test
   public void emptyBoard() {
     Assert.assertArrayEquals(game.playerBoard, new long[] {0L, 0L});
@@ -48,7 +50,7 @@ public class AppTest {
     game.makeMove(1);
     game.makeMove(5);
     game.makeMove(4);
-    assertFalse(game.isWin(game.playerBoard[1] | game.playerBoard[0]));
+    assertFalse("Es gibt keine 4 Steine in Reihe",game.isWin(game.playerBoard[1] | game.playerBoard[0]));
   }
 
   @Test

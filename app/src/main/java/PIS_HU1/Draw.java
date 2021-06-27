@@ -3,7 +3,6 @@ package PIS_HU1;
 import processing.core.PApplet;
 import processing.core.PImage;
 import java.util.Arrays;
-import static javax.swing.JOptionPane.*;
 
 public class Draw extends PApplet {
   GameEngine game = new GameEngine();
@@ -15,13 +14,11 @@ public class Draw extends PApplet {
   }
 
   public void settings() {
-
     size(650, 680);
   }
 
   public void setup() {
-    PImage icon =
-        loadImage("C:\\Users\\Mehmet\\IdeaProjects\\PIS_HU1\\app\\Pictures\\connect-four.png");
+    PImage icon = loadImage("app/Pictures/connect-four.png");
     game.reset();
     mainMenu();
     surface.setTitle("Connect Four!");
@@ -66,21 +63,31 @@ public class Draw extends PApplet {
       }
       y += 100;
     }
+    PImage winner = loadImage("app/Pictures/winner.png");
+    winner.resize(350, 350);
     if (game.isWin(game.playerBoard[0])) {
-      background(3, 90, 252);
+      background(50, 96, 114);
       textSize(60);
       fill(255);
-      text("Player 2 WON", 100, 100);
+      text("Player 1 WON", 100, 100);
       textSize(30);
       text("Press R for restart", 100, 230);
+      image(winner, 150, 250);
     } else if (game.isWin(game.playerBoard[1])) {
-      background(3, 90, 252);
+      background(50, 96, 114);
       textSize(60);
       fill(255);
-      if (bot) text("Bot WON", 100, 100);
-      else text("Player 2 WON", 100, 100);
+      if (bot) {
+        PImage botPic = loadImage("app/Pictures/robot.png");
+        text("Bot WON", 100, 100);
+        botPic.resize(350, 350);
+        image(botPic, 150, 250);
+      } else {
+        text("Player 2 WON", 100, 100);
+        image(winner, 150, 250);
+      }
       textSize(30);
-      text("Press R for restart", 100, 230);
+      text("Press R for restart", 100, 200);
     }
   }
 
@@ -102,33 +109,11 @@ public class Draw extends PApplet {
     if (key == '0') {
       System.out.println(game.toString());
     }
-    if (key == '1') {
-      game.makeMove(0);
-      if (bot) bot();
-    }
-    if (key == '2') {
-      game.makeMove(1);
-      if (bot) bot();
-    }
-    if (key == '3') {
-      game.makeMove(2);
-      if (bot) bot();
-    }
-    if (key == '4') {
-      game.makeMove(3);
-      if (bot) bot();
-    }
-    if (key == '5') {
-      game.makeMove(4);
-      if (bot) bot();
-    }
-    if (key == '6') {
-      game.makeMove(5);
-      if (bot) bot();
-    }
-    if (key == '7') {
-      game.makeMove(6);
-      if (bot) bot();
+    switch (key) {
+      case '1', '2', '3', '4', '5', '6', '7' -> {
+        game.makeMove(Integer.parseInt(String.valueOf(key))-1);
+        if (bot) bot();
+      }
     }
     if (key == 'r') {
       background(3, 90, 252);
