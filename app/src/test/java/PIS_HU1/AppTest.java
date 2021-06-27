@@ -43,6 +43,17 @@ public class AppTest {
     }
 
     @Test
+    public void testIsNotAWin(){
+        game.makeMove(6);
+        game.makeMove(2);
+        game.makeMove(1);
+        game.makeMove(5);
+        game.makeMove(4);
+        assertFalse(game.isWin(game.playerBoard[1]|game.playerBoard[0]));
+
+    }
+
+    @Test
     public void testUndoMove(){
         game.makeMove(1);
         game.undoMove();
@@ -52,5 +63,43 @@ public class AppTest {
     @Test
     public void isPlayable(){
         Assert.assertTrue(game.isPlayable(2));
+    }
+
+    @Test
+    public void testIsLegal(){
+        Assert.assertTrue(game.isLegal(game.playerBoard[0]|(1L<<game.heightCol[5])));
+        Assert.assertTrue(game.isLegal(game.playerBoard[1]|(1L<<game.heightCol[5])));
+    }
+
+    @Test
+    public  void testReset(){
+        game.makeMove(1);
+        game.makeMove(5);
+        game.reset();
+        Assert.assertEquals(0L, game.playerBoard[0]);
+        Assert.assertEquals(0L, game.playerBoard[1]);
+    }
+
+    @Test
+    public void testListMove(){
+        game.makeMove(1);
+        Assert.assertNotEquals(null,game.listMoves());
+    }
+
+    @Test
+    public void testSimulatePlays(){
+        int[] i = {0,0,0};
+        Assert.assertNotEquals(i, game.simulatePlays(game,100));
+    }
+
+    @Test
+    public void testChooseBestMove(){
+        //three yellow stones are in col 0
+        game.makeMove(0);
+        game.makeMove(1);
+        game.makeMove(0);
+        game.makeMove(1);
+        game.makeMove(0);
+        Assert.assertEquals(0,game.chooseBestMove(game,100));
     }
 }
