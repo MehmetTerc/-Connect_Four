@@ -8,49 +8,142 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AppTest {
-    private GameEngine game = new GameEngine();
+  private GameEngine game = new GameEngine();
 
-    //gewinnen möglich
-    //methodes work
-    //listMoves
-    //make Move
-    // win
-    // undoMove
-    // falscher Zug
-    //board
-    //is legal
-    //is playable
-    // ungefülltes board
+  // gewinnen möglich
+  // methodes work
+  // listMoves
+  // make Move
+  // win
+  // undoMove
+  // falscher Zug
+  // board
+  // is legal
+  // is playable
+  // ungefülltes board
+  // Game Over testen
+  //Test player Turn
+  // test more move
+  //col voll
+  //move Counter
+  //cloc app/src/main/java/PIS_HU1/GameEngine.java
 
-    @Test
-    public void emptyBoard(){
-        Assert.assertArrayEquals(game.playerBoard,new long[]{0L,0L});
-    }
 
-    @Test
-    public void testMove(){
-        game.makeMove(1);
-        Assert.assertEquals("1",Long.toBinaryString(game.playerBoard[0]));
-    }
 
-    @Test
-    public void testWin(){
-        //for player 1
-        //1000000100000010000001 horizontal win
-        game.playerBoard[0]=Long.parseLong("1000000100000010000001",2);
-        assertTrue(game.isWin(game.playerBoard[0]));
+  //Es wird geschaut, ob das Board bei Spielbeginn leer ist
+  @Test
+  public void testEmptyBoard() {
+    Assert.assertArrayEquals(game.playerBoard, new long[] {0L, 0L});
+  }
 
-    }
+  //Es wird geprüft, ob der Zug korrekt durchgeführt worden ist
+  @Test
+  public void testMove() {
+    game.makeMove(1);
+    Assert.assertEquals("Der Zug wurde nicht richtig durchgefuehrt","1", Long.toBinaryString(game.playerBoard[0]));
+  }
 
-    @Test
-    public void testUndoMove(){
-        game.makeMove(1);
-        game.undoMove();
-        Assert.assertEquals(0L,game.playerBoard[0]);
-    }
+  //es wird mehrere Züge geprüft (Warum geht es nicht mit noch mehr zügen)
+  @Test
+  public void testMoreMove(){
+    game.makeMove(0);
+    game.makeMove(1);
+    game.makeMove(0);
+    Assert.assertEquals("Die Zuege wurden nicht korrekt gespeichert", "11", Long.toBinaryString(game.playerBoard[0]));
+  }
 
-    @Test
-    public void isPlayable(){
-        Assert.assertTrue(game.isPlayable(2));
-    }
+  /*
+  public void testPlayerTurn(){
+    game.makeMove(0);
+    Assert.assertEquals(, game.playerBoard[0]);
+  }*/
+
+  @Test
+  public void testFullCol(){
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    Assert.assertFalse("Die Spalte ist voll und der Zug ist Fehlerhaft",game.isPlayable(0));
+  }
+
+  @Test
+  public void testWin() {
+    // for player 1
+    // 1000000100000010000001 horizontal win
+    game.playerBoard[0] = Long.parseLong("1000000100000010000001", 2);
+    assertTrue(game.isWin(game.playerBoard[0]));
+  }
+
+  //Der Test eines Diagonalen Sieges
+  @Test
+  public void testDiagonalWin(){
+    //Beispiel für eine Bitkombination, wenn vier gelbe Steine diagonal in Reihe stehen
+    game.playerBoard[0]=Long.parseLong("1000000111000000100000001",2);
+    Assert.assertTrue(game.isWin(game.playerBoard[0]));
+
+  }
+
+  @Test
+  public void testIsNotAWin() {
+    game.makeMove(6);
+    game.makeMove(2);
+    game.makeMove(1);
+    game.makeMove(5);
+    game.makeMove(4);
+    assertFalse("Es gibt keine 4 Steine in Reihe",game.isWin(game.playerBoard[1] | game.playerBoard[0]));
+  }
+
+  @Test
+  public void testUndoMove() {
+    game.makeMove(1);
+    game.undoMove();
+    Assert.assertEquals(0L, game.playerBoard[0]);
+  }
+
+  @Test
+  public void isPlayable() {
+    Assert.assertTrue(game.isPlayable(2));
+  }
+
+  @Test
+  public void testIsLegal() {
+    Assert.assertTrue(game.isLegal(game.playerBoard[0] | (1L << game.heightCol[5])));
+    Assert.assertTrue(game.isLegal(game.playerBoard[1] | (1L << game.heightCol[5])));
+  }
+
+  @Test
+  public void testReset() {
+    game.makeMove(1);
+    game.makeMove(5);
+    game.reset();
+    Assert.assertEquals(0L, game.playerBoard[0]);
+    Assert.assertEquals(0L, game.playerBoard[1]);
+  }
+
+  @Test
+  public void testListMove() {
+    game.makeMove(1);
+    Assert.assertNotEquals(null, game.listMoves());
+  }
+
+  @Test
+  public void testSimulatePlays() {
+    int[] i = {0, 0, 0};
+    Assert.assertNotEquals(i, game.simulatePlays(game, 100));
+  }
+
+  @Test
+  public void testChooseBestMove() {
+    // three yellow stones are in col 0
+    game.makeMove(0);
+    game.makeMove(1);
+    game.makeMove(0);
+    game.makeMove(1);
+    game.makeMove(0);
+    Assert.assertEquals(0, game.chooseBestMove(game, 100));
+  }
 }
