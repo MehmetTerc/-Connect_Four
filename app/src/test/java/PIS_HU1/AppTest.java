@@ -21,18 +21,53 @@ public class AppTest {
   // is legal
   // is playable
   // ungefülltes board
+  // Game Over testen
+  //Test player Turn
+  // test more move
+  //col voll
+  //move Counter
+  //cloc app/src/main/java/PIS_HU1/GameEngine.java
 
 
-  //Es wird geschaut, ob das Board zu Beginn leer ist oder nicht
+
+  //Es wird geschaut, ob das Board bei Spielbeginn leer ist
   @Test
-  public void emptyBoard() {
+  public void testEmptyBoard() {
     Assert.assertArrayEquals(game.playerBoard, new long[] {0L, 0L});
   }
 
+  //Es wird geprüft, ob der Zug korrekt durchgeführt worden ist
   @Test
   public void testMove() {
     game.makeMove(1);
-    Assert.assertEquals("1", Long.toBinaryString(game.playerBoard[0]));
+    Assert.assertEquals("Der Zug wurde nicht richtig durchgefuehrt","1", Long.toBinaryString(game.playerBoard[0]));
+  }
+
+  //es wird mehrere Züge geprüft (Warum geht es nicht mit noch mehr zügen)
+  @Test
+  public void testMoreMove(){
+    game.makeMove(0);
+    game.makeMove(1);
+    game.makeMove(0);
+    Assert.assertEquals("Die Zuege wurden nicht korrekt gespeichert", "11", Long.toBinaryString(game.playerBoard[0]));
+  }
+
+  /*
+  public void testPlayerTurn(){
+    game.makeMove(0);
+    Assert.assertEquals(, game.playerBoard[0]);
+  }*/
+
+  @Test
+  public void testFullCol(){
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    game.makeMove(0);
+    Assert.assertFalse("Die Spalte ist voll und der Zug ist Fehlerhaft",game.isPlayable(0));
   }
 
   @Test
@@ -41,6 +76,15 @@ public class AppTest {
     // 1000000100000010000001 horizontal win
     game.playerBoard[0] = Long.parseLong("1000000100000010000001", 2);
     assertTrue(game.isWin(game.playerBoard[0]));
+  }
+
+  //Der Test eines Diagonalen Sieges
+  @Test
+  public void testDiagonalWin(){
+    //Beispiel für eine Bitkombination, wenn vier gelbe Steine diagonal in Reihe stehen
+    game.playerBoard[0]=Long.parseLong("1000000111000000100000001",2);
+    Assert.assertTrue(game.isWin(game.playerBoard[0]));
+
   }
 
   @Test

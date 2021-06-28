@@ -13,6 +13,7 @@ public class GameEngine implements GameInterface {
   private final int column = (1 << heightBottom) - 1;
   private final long bottom = all / column;
   private final long top = bottom << height;
+  private int draw = 0;
   long[] playerBoard = new long[] {0L, 0L};
   int[] heightCol = new int[7]; // Zählt wieviele Steine in dem Column sind
   int[] move = new int[43]; // Moves werden gezählt, wenn das Array voll ist, ist das Spiel vorbei
@@ -38,7 +39,9 @@ public class GameEngine implements GameInterface {
     long moving = 1L << heightCol[col]++;
     playerBoard[count & 1] ^= moving;
     move[count++] = col;
-    // System.out.println(Long.toBinaryString(playerBoard[0])+"
+    draw+=1;
+    if (draw > 42) System.out.println("Draw");
+    System.out.println(Long.toBinaryString(playerBoard[0]));
     // "+Long.toBinaryString(playerBoard[0]));
   }
 
@@ -56,8 +59,7 @@ public class GameEngine implements GameInterface {
     for (int i = 0; i < width; i++) {
       heightCol[i] = heightBottom * i;
     }
-    // System.out.println(Long.toBinaryString(playerBoard[0])+"
-    // "+Long.toBinaryString(playerBoard[0]));
+    // System.out.println(Long.toBinaryString(playerBoard[0])+" "+Long.toBinaryString(playerBoard[0]));
   }
 
   public boolean isLegal(long board) {
