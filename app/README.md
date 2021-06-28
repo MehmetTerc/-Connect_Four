@@ -30,16 +30,27 @@ Wenn man das Spiel zurücksetzen möchte, kann man die Taste R drücken und das 
 
 <h3><span style="color:red">Dateiübersicht und LOC:</h3>
 
-> dir /S /B /A-D . <br>
-C:\PIS_HU1\app\build.gradle
-C:\PIS_HU1\app\core.jar
-C:\PIS_HU1\app\README.md
-C:\PIS_HU1\app\Pictures
-C:\PIS_HU1\app\src\main\java\PIS_HU1\Draw.java
-C:\PIS_HU1\app\src\main\java\PIS_HU1\GameEngine.java
-C:\PIS_HU1\app\src\main\java\PIS_HU1\GameInterface.java
-C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java
+```
+> dir /S /B /A-D . 
+C:\PIS_HU1\app\build.gradle 
+C:\PIS_HU1\app\core.jar 
+C:\PIS_HU1\app\README.md 
+C:\PIS_HU1\app\Pictures <
+C:\PIS_HU1\app\src\main\java\PIS_HU1\Draw.java 
+C:\PIS_HU1\app\src\main\java\PIS_HU1\GameEngine.java 
+C:\PIS_HU1\app\src\main\java\PIS_HU1\GameInterface.java 
+C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java 
+```
+```
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                             3             28              3            288
+-------------------------------------------------------------------------------
+SUM:                             3             28              3            288
+-------------------------------------------------------------------------------
 
+```
 <br>
 
 <h3><span style="color:red">Quellen:</h3>
