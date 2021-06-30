@@ -58,7 +58,7 @@ public class AppTest {
     Assert.assertEquals(, game.playerBoard[0]);
   }*/
 
-  //
+  //es wird geprüft, ob eine Zeile schon voll ist
   @Test
   public void testFullCol(){
     game.makeMove(0);
@@ -71,23 +71,25 @@ public class AppTest {
     Assert.assertFalse("Die Spalte ist voll, trotzdem kann ein Stein gesetzt werden",game.isPlayable(0));
   }
 
+
+  //Es wird ein Beispiel für einen horizontalen Sieg im Board gespeichert und dann die isWin Methode für horizontale Viererlinien getestet
   @Test
   public void testWin() {
-    // for player 1
     // 1000000100000010000001 horizontal win
     game.playerBoard[0] = Long.parseLong("1000000100000010000001", 2);
-    assertTrue(game.isWin(game.playerBoard[0]));
+    assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht",game.isWin(game.playerBoard[0]));
   }
 
-  //Der Test eines Diagonalen Sieges
+  //Es wird ein Beispiel für einen diagonalen Sieg im Board gespeichert und dann die isWin Methode für horizontale Viererlinien getestet
   @Test
   public void testDiagonalWin(){
     //Beispiel für eine Bitkombination, wenn vier gelbe Steine diagonal in Reihe stehen
     game.playerBoard[0]=Long.parseLong("1000000111000000100000001",2);
-    Assert.assertTrue(game.isWin(game.playerBoard[0]));
+    Assert.assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht",game.isWin(game.playerBoard[0]));
 
   }
 
+  //Es werden verschiedene Züge gespielt, die keinen Sieg ergeben und dann wird die isWin Methode geprüft, ob sie das erkennt
   @Test
   public void testIsNotAWin() {
     game.makeMove(6);
@@ -95,9 +97,10 @@ public class AppTest {
     game.makeMove(1);
     game.makeMove(5);
     game.makeMove(4);
-    assertFalse("Es gibt keine 4 Steine in Reihe",game.isWin(game.playerBoard[1] | game.playerBoard[0]));
+    assertFalse("Es gibt keine 4 Steine in Reihe, isWin ist fehlerhaft",game.isWin(game.playerBoard[1] | game.playerBoard[0]));
   }
 
+  //Es wird geprüft, ob undoMove den Zug korrekt zurücknimmt
   @Test
   public void testUndoMove() {
     game.makeMove(1);
@@ -105,6 +108,7 @@ public class AppTest {
     Assert.assertEquals(0L, game.playerBoard[0]);
   }
 
+  // Es wird geprüft, ob isPlayable() für diese beispielhafte Eingabe den korrekten Wert ausgibt
   @Test
   public void isPlayable() {
     Assert.assertTrue(game.isPlayable(2));
@@ -116,6 +120,7 @@ public class AppTest {
     Assert.assertTrue(game.isLegal(game.playerBoard[1] | (1L << game.heightCol[5])));
   }
 
+  //Es wird geprüft, ob das Spiel korrekt zurückgesetzt wird
   @Test
   public void testReset() {
     game.makeMove(1);
@@ -136,6 +141,10 @@ public class AppTest {
     int[] i = {0, 0, 0};
     Assert.assertNotEquals(i, game.simulatePlays(game, 100));
   }
+
+  /*Es wird ein Spiel simuliert, wo drei gelbe Steine, in der ersten Spalte, in einer Reihe sind.
+  chooseBestMove muss jetzt erkennen, dass der nächstbeste Zug die Spalte 1 ist.
+   */
 
   @Test
   public void testChooseBestMove() {

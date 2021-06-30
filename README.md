@@ -57,7 +57,7 @@ https://processing.org/reference/ (Abruf: 15.6.21) <br>
 https://github.com/denkspuren/BitboardC4/blob/master/BitboardDesign.md (Abruf: 18.6.21) <br>
 https://www.youtube.com/watch?v=CjldSexfOuU (Abruf 22.6.21) <br>
 https://forum.processing.org/two/discussion/8879/how-can-i-have-a-starting-screen-for-a-game  (Abruf 24.06.21) <br>
-Icon made by Dighital from Flaticon https://www.flaticon.com/search/2?word=board games&type=icon  (Abruf 25.06.21) <br>
+Icon made by Dighital from Flaticon https://www.flaticon.com/search/2?word=board%20games&type=icon  (Abruf 25.06.21) <br>
 Icon made by Freepik from Flaticon https://www.flaticon.com  (Abruf 25.06.21) <br>
 https://www.pinclipart.com/search.html?k=connect+four (Abruf 27.06.21) <br>
 https://freepngimg.com/png/72964-euclidean-vector-robot-png-free-photo (Abruf 27.06.21) <br>
