@@ -8,7 +8,7 @@ oder waagerecht in eine Linie zu bringen. <br>
 Gleichzeitig muss man aber auch verhindern, dass der Gegner nicht das Selbe 
 schafft. <br>
 Es wird abwecheselnd auf ein 7 x 7 Felder großes Feld Steine gesetzt, 
-wird eine Spalte für ein Zug ausgewählt, rutscht der Stein bis zum unsersten
+wird eine Spalte für ein Zug ausgewählt, rutscht der Stein bis zum untersten
 freien Platz in der Spalte. <br>
 Das Spiel endet unentschieden, wenn alle Felder voll sind, ohne dass ein Spieler 
 eine Viererlinie gebildet hat. (84 Wörter) <br>
@@ -16,7 +16,7 @@ eine Viererlinie gebildet hat. (84 Wörter) <br>
 <br>
 
 <h3><span style="color:red">Screenshot einer Partie:</h3>
-![img.png](Pictures/img.png)
+![img.png](app/Pictures/img.png)
 <br>
 <br>
 
@@ -35,13 +35,12 @@ Wenn man das Spiel zurücksetzen möchte, kann man die Taste R drücken und das 
 C:\PIS_HU1\app\build.gradle 
 C:\PIS_HU1\app\core.jar 
 C:\PIS_HU1\app\README.md 
-C:\PIS_HU1\app\Pictures <
+C:\PIS_HU1\app\Pictures 
 C:\PIS_HU1\app\src\main\java\PIS_HU1\Draw.java 
 C:\PIS_HU1\app\src\main\java\PIS_HU1\GameEngine.java 
 C:\PIS_HU1\app\src\main\java\PIS_HU1\GameInterface.java 
 C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java 
-```
-```
+
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
@@ -54,4 +53,13 @@ SUM:                             3             28              3            288
 <br>
 
 <h3><span style="color:red">Quellen:</h3>
-
+https://processing.org/reference/ (Abruf: 15.6.21) <br>
+https://github.com/denkspuren/BitboardC4/blob/master/BitboardDesign.md (Abruf: 18.6.21) <br>
+https://www.youtube.com/watch?v=CjldSexfOuU (Abruf 22.6.21) <br>
+https://forum.processing.org/two/discussion/8879/how-can-i-have-a-starting-screen-for-a-game  (Abruf 24.06.21) <br>
+Icon made by Dighital from Flaticon https://www.flaticon.com/search/2?word=board games&type=icon  (Abruf 25.06.21) <br>
+Icon made by Freepik from Flaticon https://www.flaticon.com  (Abruf 25.06.21) <br>
+https://www.pinclipart.com/search.html?k=connect+four (Abruf 27.06.21) <br>
+https://freepngimg.com/png/72964-euclidean-vector-robot-png-free-photo (Abruf 27.06.21) <br>
+https://www.pinclipart.com/pindetail/mhoRTm_connect-four-clipart/ (Abruf 27.06.21) <br>
+https://forum.processing.org/one/topic/keycode-in-switch-statement.html (Abruf 28.06.21) <br>
