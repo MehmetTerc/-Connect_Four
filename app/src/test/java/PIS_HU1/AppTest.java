@@ -33,14 +33,14 @@ public class AppTest {
   //Es wird geschaut, ob das Board bei Spielbeginn leer ist
   @Test
   public void testEmptyBoard() {
-    Assert.assertArrayEquals(game.playerBoard, new long[] {0L, 0L});
+     Assert.assertArrayEquals("Das Spielfeld ist nicht leer, obwohl das Spiel neu gestartet wurde",game.playerBoard, new long[] {0L, 0L});
   }
 
-  //Es wird geprüft, ob der Zug korrekt durchgeführt worden ist
+  //Es wird geprüft, ob der Zug korrekt ausgeführt worden ist und dieser richtig gespeichert wird
   @Test
   public void testMove() {
     game.makeMove(1);
-    Assert.assertEquals("Der Zug wurde nicht richtig durchgefuehrt","1", Long.toBinaryString(game.playerBoard[0]));
+    Assert.assertEquals("Der Zug wurde nicht richtig gespeichert","1", Long.toBinaryString(game.playerBoard[0]));
   }
 
   //es wird mehrere Züge geprüft (Warum geht es nicht mit noch mehr zügen)
@@ -58,6 +58,7 @@ public class AppTest {
     Assert.assertEquals(, game.playerBoard[0]);
   }*/
 
+  //
   @Test
   public void testFullCol(){
     game.makeMove(0);
@@ -67,7 +68,7 @@ public class AppTest {
     game.makeMove(0);
     game.makeMove(0);
     game.makeMove(0);
-    Assert.assertFalse("Die Spalte ist voll und der Zug ist Fehlerhaft",game.isPlayable(0));
+    Assert.assertFalse("Die Spalte ist voll, trotzdem kann ein Stein gesetzt werden",game.isPlayable(0));
   }
 
   @Test
