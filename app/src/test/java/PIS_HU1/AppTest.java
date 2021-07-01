@@ -10,49 +10,34 @@ import static org.junit.Assert.*;
 public class AppTest {
   private GameEngine game = new GameEngine();
 
-  // gewinnen möglich
-  // methodes work
-  // listMoves
-  // make Move
-  // win
-  // undoMove
-  // falscher Zug
-  // board
-  // is legal
-  // is playable
-  // ungefülltes board
-  // Game Over testen
-  //Test player Turn
-  // test more move
-  //col voll
-  //move Counter
-  //cloc app/src/main/java/PIS_HU1/GameEngine.java
-
-
-
   //Es wird geschaut, ob das Board bei Spielbeginn leer ist
   @Test
   public void testEmptyBoard() {
-     Assert.assertArrayEquals("Das Spielfeld ist nicht leer, obwohl das Spiel neu gestartet wurde",game.playerBoard, new long[] {0L, 0L});
+     Assert.assertArrayEquals("Das Spielfeld ist nicht leer, obwohl das Spiel neu gestartet wurde",game.getPlayerBoard(), new long[] {0L, 0L});
   }
 
   //Es wird geprüft, ob der Zug korrekt ausgeführt worden ist und dieser richtig gespeichert wird
   @Test
   public void testMove() {
-    game.makeMove(1);
-    Assert.assertEquals("Der Zug wurde nicht richtig gespeichert","1", Long.toBinaryString(game.playerBoard[0]));
+    game.reset();
+    game.makeMove(0);
+    Assert.assertEquals("Der Zug wurde nicht richtig gespeichert","1", Long.toBinaryString(game.getPlayerBoard()[0]));
   }
 
   //es wird mehrere Züge geprüft (Warum geht es nicht mit noch mehr zügen)
   @Test
   public void testMoreMove(){
     game.makeMove(0);
+    game.makeMove(2);
+    game.makeMove(4);
     game.makeMove(1);
+    game.makeMove(2);
     game.makeMove(0);
-    Assert.assertEquals("Die Zuege wurden nicht korrekt gespeichert", "11", Long.toBinaryString(game.playerBoard[0]));
+    Assert.assertEquals("Die Zuege wurden nicht korrekt gespeichert", "10000000000001000000000000001", Long.toBinaryString(game.getPlayerBoard()[0]));
   }
 
-  /*
+  //Es wird geprüft, ob der andere Spieler nach einem Zug dran ist
+  @Test
   public void testPlayerTurn(){
     game.makeMove(0);
     Assert.assertEquals(, game.playerBoard[0]);
@@ -76,8 +61,8 @@ public class AppTest {
   @Test
   public void testWin() {
     // 1000000100000010000001 horizontal win
-    game.playerBoard[0] = Long.parseLong("1000000100000010000001", 2);
-    assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht",game.isWin(game.playerBoard[0]));
+    game.getPlayerBoard()[0] = Long.parseLong("1000000100000010000001", 2);
+    assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht",game.isWin(game.getPlayerBoard()[0]));
   }
 
   //Es wird ein Beispiel für einen diagonalen Sieg im Board gespeichert und dann die isWin Methode für horizontale Viererlinien getestet
@@ -136,6 +121,7 @@ public class AppTest {
     Assert.assertNotEquals(null, game.listMoves());
   }
 
+  //Prüft, ob die Methode simulatePlays auch wirklich Spiele simuliert
   @Test
   public void testSimulatePlays() {
     int[] i = {0, 0, 0};
@@ -156,4 +142,17 @@ public class AppTest {
     game.makeMove(0);
     Assert.assertEquals(0, game.chooseBestMove(game, 100));
   }
+
+  //Es wird geprüft, ob das Spiel unentschieden ausgegangen ist
+  @Test
+  public void testDraw(){
+    game.reset();
+    int[] drawCol = {6,13,20,27,34,41,48};
+    game.setHeightCol(drawCol); //heightCol prüft, ob man noch ein Stein in die Zeile setzen kann und wird hier auf den vollen Wert für alle Spalten gesetzt
+    Assert.assertTrue("Test", game.listMoves().isEmpty()); //listMoves gibt die nächsten möglichen Züge aus
+
+
+  }
+
+
 }

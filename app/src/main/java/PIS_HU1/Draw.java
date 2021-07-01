@@ -46,11 +46,11 @@ public class Draw extends PApplet {
       int i = 1;
       while (w < 49) {
         long mask = 1L << w;
-        if ((game.playerBoard[0] & mask) != 0L) {
+        if ((game.getPlayerBoard()[0] & mask) != 0L) {
           fill(252, 215, 3);
           ellipse(x * i, y, 75, 75);
 
-        } else if ((game.playerBoard[1] & mask) != 0L) {
+        } else if ((game.getPlayerBoard()[1] & mask) != 0L) {
           fill(252, 44, 3);
           ellipse(x * i, y, 75, 75);
 
@@ -65,7 +65,7 @@ public class Draw extends PApplet {
     }
     PImage winner = loadImage("app/Pictures/winner.png");
     winner.resize(350, 350);
-    if (game.isWin(game.playerBoard[0])) {
+    if (game.isWin(game.getPlayerBoard()[0])) {
       background(50, 96, 114);
       textSize(60);
       fill(255);
@@ -73,7 +73,7 @@ public class Draw extends PApplet {
       textSize(30);
       text("Press R for restart", 100, 230);
       image(winner, 150, 250);
-    } else if (game.isWin(game.playerBoard[1])) {
+    } else if (game.isWin(game.getPlayerBoard()[1])) {
       background(50, 96, 114);
       textSize(60);
       fill(255);
@@ -106,9 +106,6 @@ public class Draw extends PApplet {
 
   @Override
   public void keyPressed() {
-    if (key == '0') {
-      System.out.println(game.toString());
-    }
     switch (key) {
       case '1', '2', '3', '4', '5', '6', '7' -> {
         game.makeMove(Integer.parseInt(String.valueOf(key))-1);
@@ -138,11 +135,10 @@ public class Draw extends PApplet {
 
   public void bot() {
     GameEngine test = new GameEngine();
-    test.playerBoard = Arrays.copyOf(game.playerBoard, game.playerBoard.length);
-    test.move = Arrays.copyOf(game.move, game.move.length);
-    test.heightCol = Arrays.copyOf(game.heightCol, game.heightCol.length);
-    test.count = game.count;
-    System.out.println(test.chooseBestMove(test, 100));
+    test.setGetPlayerBoard(Arrays.copyOf(game.getPlayerBoard(), game.getPlayerBoard().length));
+    test.setMove(Arrays.copyOf(game.getMove(), game.getMove().length));
+    test.setHeightCol(Arrays.copyOf(game.getHeightCol(), game.getHeightCol().length));
+    test.setCount(game.getCount());
     game.makeMove(test.chooseBestMove(test, 100));
   }
 }
