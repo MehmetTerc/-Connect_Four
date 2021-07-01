@@ -27,6 +27,7 @@ public class AppTest {
   //es wird mehrere Züge geprüft (Warum geht es nicht mit noch mehr zügen)
   @Test
   public void testMoreMove(){
+    game.reset();
     game.makeMove(0);
     game.makeMove(2);
     game.makeMove(4);
@@ -39,13 +40,17 @@ public class AppTest {
   //Es wird geprüft, ob der andere Spieler nach einem Zug dran ist
   @Test
   public void testPlayerTurn(){
-    game.makeMove(0);
-    Assert.assertEquals(, game.playerBoard[0]);
-  }*/
+    game.reset();
+    game.makeMove(5);
+    //Durch die logische Verundung mit getCount() kommt immer eine 0 oder 1, je nachdem welcher Spieler dran ist
+    Assert.assertEquals("Wurde nicht richtig gewechselt", 1, (game.getCount() & 1));
+
+  }
 
   //es wird geprüft, ob eine Zeile schon voll ist
   @Test
   public void testFullCol(){
+    game.reset();
     game.makeMove(0);
     game.makeMove(0);
     game.makeMove(0);
@@ -69,8 +74,8 @@ public class AppTest {
   @Test
   public void testDiagonalWin(){
     //Beispiel für eine Bitkombination, wenn vier gelbe Steine diagonal in Reihe stehen
-    game.playerBoard[0]=Long.parseLong("1000000111000000100000001",2);
-    Assert.assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht",game.isWin(game.playerBoard[0]));
+    game.getPlayerBoard()[0]=Long.parseLong("1000000111000000100000001",2);
+    Assert.assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht",game.isWin(game.getPlayerBoard()[0]));
 
   }
 
@@ -82,7 +87,7 @@ public class AppTest {
     game.makeMove(1);
     game.makeMove(5);
     game.makeMove(4);
-    assertFalse("Es gibt keine 4 Steine in Reihe, isWin ist fehlerhaft",game.isWin(game.playerBoard[1] | game.playerBoard[0]));
+    assertFalse("Es gibt keine 4 Steine in Reihe, isWin ist fehlerhaft",game.isWin(game.getPlayerBoard()[1] | game.getPlayerBoard()[0]));
   }
 
   //Es wird geprüft, ob undoMove den Zug korrekt zurücknimmt
@@ -90,7 +95,7 @@ public class AppTest {
   public void testUndoMove() {
     game.makeMove(1);
     game.undoMove();
-    Assert.assertEquals(0L, game.playerBoard[0]);
+    Assert.assertEquals(0L, game.getPlayerBoard()[0]);
   }
 
   // Es wird geprüft, ob isPlayable() für diese beispielhafte Eingabe den korrekten Wert ausgibt
@@ -101,8 +106,8 @@ public class AppTest {
 
   @Test
   public void testIsLegal() {
-    Assert.assertTrue(game.isLegal(game.playerBoard[0] | (1L << game.heightCol[5])));
-    Assert.assertTrue(game.isLegal(game.playerBoard[1] | (1L << game.heightCol[5])));
+    Assert.assertTrue(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[5])));
+    Assert.assertTrue(game.isLegal(game.getPlayerBoard()[1] | (1L << game.getHeightCol()[5])));
   }
 
   //Es wird geprüft, ob das Spiel korrekt zurückgesetzt wird
@@ -111,8 +116,8 @@ public class AppTest {
     game.makeMove(1);
     game.makeMove(5);
     game.reset();
-    Assert.assertEquals(0L, game.playerBoard[0]);
-    Assert.assertEquals(0L, game.playerBoard[1]);
+    Assert.assertEquals(0L, game.getPlayerBoard()[0]);
+    Assert.assertEquals(0L, game.getPlayerBoard()[1]);
   }
 
   @Test
