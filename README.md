@@ -16,7 +16,7 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 <br>
 
 <h3><span style="color:red">Screenshot einer Partie:</h3>
-![img.png](app/Pictures/img.png)
+![img.png](img.png)
 <br>
 <br>
 
