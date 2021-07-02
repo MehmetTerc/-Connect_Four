@@ -137,8 +137,8 @@ public class AppTest {
   public void testIsLegal() {
     game.reset();
     int i=0;
-    while(i<5){
-      game.makeMove(6);
+    while(i<6){
+      game.makeMove(4);
       i++;
     }
     Assert.assertFalse(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[4])));
