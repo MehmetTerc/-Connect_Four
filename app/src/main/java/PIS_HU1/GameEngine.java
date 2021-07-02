@@ -14,8 +14,10 @@ public class GameEngine implements GameInterface {
   private final long bottom = all / column;
   private final long top = bottom << height;
   private int[] heightCol = new int[7]; // Zählt wieviele Steine in dem Column sind
-  private int[] move = new int[42]; // Moves werden gezählt, wenn das Array voll ist, ist das Spiel vorbei
+  private int[] move =
+      new int[42]; // Moves werden gezählt, wenn das Array voll ist, ist das Spiel vorbei
   private int count = 0;
+  private long[] getPlayerBoard = new long[] {0L, 0L};
 
   // prüft, ob jemand gewonnen hat
   @Override
@@ -67,8 +69,7 @@ public class GameEngine implements GameInterface {
   }
 
   public boolean isPlayable(int col) {
-    return isLegal(
-        getPlayerBoard[count & 1] | (1L << heightCol[col])); // Prüft, ob der move spielbar ist.
+    return isLegal(getPlayerBoard[count & 1] | (1L << heightCol[col])); // Prüft, ob der move spielbar ist.
   }
 
   // Montecarlo Bot
@@ -91,8 +92,7 @@ public class GameEngine implements GameInterface {
       if (moves.isEmpty()) return 0;
       int randomMove = moves.get(rnd.nextInt(moves.size()));
       board.makeMove(randomMove);
-      value =
-          board.isWin(board.getPlayerBoard[0]) ? 1 : board.isWin(board.getPlayerBoard[1]) ? -1 : 0;
+      value = board.isWin(board.getPlayerBoard[0]) ? 1 : board.isWin(board.getPlayerBoard[1]) ? -1 : 0;
     }
     return value;
   }
@@ -102,8 +102,7 @@ public class GameEngine implements GameInterface {
     int count = board.count;
     while (number > 0) {
       GameEngine test = new GameEngine();
-      test.getPlayerBoard =
-          Arrays.copyOf(board.getPlayerBoard, board.getPlayerBoard.length); // NUR CLONE
+      test.getPlayerBoard = Arrays.copyOf(board.getPlayerBoard, board.getPlayerBoard.length); // NUR CLONE
       test.move = Arrays.copyOf(board.move, board.move.length);
       test.heightCol = Arrays.copyOf(board.heightCol, board.heightCol.length);
       test.count = count;
@@ -135,9 +134,7 @@ public class GameEngine implements GameInterface {
     int maxValue = Arrays.stream(values).max().getAsInt();
     int bestIndex = -1;
     for (int j = 0; j < values.length; j++) {
-      if (values[j] == maxValue) {
-        bestIndex = j;
-      }
+      if (values[j] == maxValue) { bestIndex = j; }
     }
     return moves.get(bestIndex);
   }
@@ -149,8 +146,6 @@ public class GameEngine implements GameInterface {
   public void setGetPlayerBoard(long[] getPlayerBoard) {
     this.getPlayerBoard = getPlayerBoard;
   }
-
-  private long[] getPlayerBoard = new long[] {0L, 0L};
 
   public int[] getHeightCol() {
     return heightCol;

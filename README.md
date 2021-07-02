@@ -44,11 +44,14 @@ C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-Java                             3             28              3            288
+Java                             3             28              3            285
 -------------------------------------------------------------------------------
-SUM:                             3             28              3            288
+SUM:                             3             28              3            285
 -------------------------------------------------------------------------------
 
+LOC: 285
+AL-LOC: 153
+AL : 53,68% 
 ```
 <br>
 
@@ -63,3 +66,4 @@ https://www.pinclipart.com/search.html?k=connect+four (Abruf 27.06.21) <br>
 https://freepngimg.com/png/72964-euclidean-vector-robot-png-free-photo (Abruf 27.06.21) <br>
 https://www.pinclipart.com/pindetail/mhoRTm_connect-four-clipart/ (Abruf 27.06.21) <br>
 https://forum.processing.org/one/topic/keycode-in-switch-statement.html (Abruf 28.06.21) <br>
+READ.me Template zur Abgabe (Abruf 01.07.21) <br>
