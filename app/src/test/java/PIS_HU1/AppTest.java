@@ -74,27 +74,40 @@ public class AppTest {
   // Es wird ein Beispiel für einen horizontalen Sieg im Board gespeichert und dann die isWin
   // Methode für eine horizontale Viererlinien getestet
   @Test
-  public void testWin() {
+  public void testHorizontalWin() {
     // 1000000100000010000001 horizontal win
     game.getPlayerBoard()[0] = Long.parseLong("1000000100000010000001", 2);
-    Assert.assertTrue("Es gibt vier Steine in Reihe,isWin erkennt dies nicht", game.isWin(game.getPlayerBoard()[0]));
+    Assert.assertTrue("Es gibt vier horizontale Steine in Reihe,isWin erkennt dies nicht", game.isWin(game.getPlayerBoard()[0]));
   }
 
   // Es wird ein Beispiel für einen diagonalen Sieg im Board gespeichert und dann die isWin Methode
-  // für horizontale Viererlinien getestet
+  // für eine diagonale Viererlinien getestet
   @Test
   public void testDiagonalWin() {
+    game.reset();
     // Beispiel für eine Bitkombination, wenn vier gelbe Steine diagonal in Reihe stehen
     game.getPlayerBoard()[0] = Long.parseLong("1000000111000000100000001", 2);
     Assert.assertTrue(
-        "Es gibt vier Steine in Reihe,isWin erkennt dies nicht",
+        "Es gibt vier diagonale Steine in Reihe,isWin erkennt dies nicht",
         game.isWin(game.getPlayerBoard()[0]));
+  }
+
+  // Es wird ein Beispiel für einen diagonalen Sieg im Board gespeichert und dann die isWin
+  // für eine vertikale Viererlinien getestet
+  @Test
+  public void testVerticalWin() {
+    game.reset();
+    game.getPlayerBoard()[0] = Long.parseLong("1111", 2);
+    Assert.assertTrue(
+            "Es gibt vier vertikale Steine in Reihe,isWin erkennt dies nicht",
+            game.isWin(game.getPlayerBoard()[0]));
   }
 
   // Es werden verschiedene Züge gespielt, die keinen Sieg ergeben und dann wird die isWin Methode
   // geprüft, ob sie das erkennt
   @Test
   public void testIsNotAWin() {
+    game.reset();
     game.makeMove(6);
     game.makeMove(2);
     game.makeMove(1);
@@ -124,11 +137,11 @@ public class AppTest {
   public void testIsLegal() {
     game.reset();
     int i=0;
-    while(i<6){
-      game.makeMove(0);
+    while(i<5){
+      game.makeMove(6);
       i++;
     }
-    Assert.assertFalse(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[0])));
+    Assert.assertFalse(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[4])));
     //Assert.assertTrue(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[5])));
     //Assert.assertTrue(game.isLegal(game.getPlayerBoard()[1] | (1L << game.getHeightCol()[5])));
   }

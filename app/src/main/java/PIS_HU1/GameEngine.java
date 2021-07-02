@@ -40,6 +40,7 @@ public class GameEngine implements GameInterface {
     getPlayerBoard[count & 1] ^= moving;
     move[count++] = col;
     if (count > 42) System.out.println("Draw");
+    System.out.println(Long.toBinaryString(getPlayerBoard()[0]));
   }
 
   // nimmt ein Zug zurück
