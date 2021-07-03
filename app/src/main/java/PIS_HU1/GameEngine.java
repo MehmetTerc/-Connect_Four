@@ -14,8 +14,7 @@ public class GameEngine implements GameInterface {
   private final long bottom = all / column;
   private final long top = bottom << height;
   private int[] heightCol = new int[7]; // Zählt wieviele Steine in dem Column sind
-  private int[] move =
-      new int[42]; // Moves werden gezählt, wenn das Array voll ist, ist das Spiel vorbei
+  private int[] move = new int[42]; // Moves werden gezählt, wenn das Array voll ist, ist das Spiel vorbei
   private int count = 0;
   private long[] getPlayerBoard = new long[] {0L, 0L};
 
@@ -42,7 +41,6 @@ public class GameEngine implements GameInterface {
     getPlayerBoard[count & 1] ^= moving;
     move[count++] = col;
     if (count > 42) System.out.println("Draw");
-    System.out.println(Long.toBinaryString(getPlayerBoard()[0]));
   }
 
   // nimmt ein Zug zurück
@@ -68,12 +66,14 @@ public class GameEngine implements GameInterface {
     return ((board & top) == 0L); // ist die oberste Stelle frei und ist der Zug gültig
   }
 
+  //prüft, ob ein Zug möglich ist
   public boolean isPlayable(int col) {
     return isLegal(getPlayerBoard[count & 1] | (1L << heightCol[col])); // Prüft, ob der move spielbar ist.
   }
 
   // Montecarlo Bot
 
+  //Listet alle möglichen Züge des aktuellen Boards
   public ArrayList<Integer> listMoves() {
     ArrayList<Integer> moves = new ArrayList<>();
     long TOP = 0b1000000_1000000_1000000_1000000_1000000_1000000_1000000L;
@@ -84,8 +84,7 @@ public class GameEngine implements GameInterface {
   }
 
   public int playRandomly(GameEngine board) {
-    int value =
-        board.isWin(board.getPlayerBoard[0]) ? 1 : board.isWin(board.getPlayerBoard[1]) ? -1 : 0;
+    int value = board.isWin(board.getPlayerBoard[0]) ? 1 : board.isWin(board.getPlayerBoard[1]) ? -1 : 0;
     Random rnd = new Random();
     while (value == 0) {
       ArrayList<Integer> moves = board.listMoves();
@@ -97,6 +96,7 @@ public class GameEngine implements GameInterface {
     return value;
   }
 
+  //Simuliert die Ausgänge von Partien und trägt sie in ein Array ein
   public int[] simulatePlays(GameEngine board, int number) {
     int[] counter = {0, 0, 0};
     int count = board.count;
@@ -134,7 +134,9 @@ public class GameEngine implements GameInterface {
     int maxValue = Arrays.stream(values).max().getAsInt();
     int bestIndex = -1;
     for (int j = 0; j < values.length; j++) {
-      if (values[j] == maxValue) { bestIndex = j; }
+      if (values[j] == maxValue) {
+        bestIndex = j;
+      }
     }
     return moves.get(bestIndex);
   }

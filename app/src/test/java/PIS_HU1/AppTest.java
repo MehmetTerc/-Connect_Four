@@ -92,7 +92,7 @@ public class AppTest {
         game.isWin(game.getPlayerBoard()[0]));
   }
 
-  // Es wird ein Beispiel für einen diagonalen Sieg im Board gespeichert und dann die isWin
+  // Es wird ein Beispiel für einen vertikalen Sieg im Board gespeichert und dann die isWin
   // für eine vertikale Viererlinien getestet
   @Test
   public void testVerticalWin() {
@@ -133,17 +133,18 @@ public class AppTest {
         "Der Zug ist eigentlich spielbar, aber es wird nicht erkannt", game.isPlayable(2));
   }
 
+  //Es wird geprüft, ob isLegal() korrekt funktioniert
   @Test
   public void testIsLegal() {
     game.reset();
+    //Simulation der vollen Spalte 5
     int i=0;
     while(i<6){
       game.makeMove(4);
       i++;
     }
     Assert.assertFalse(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[4])));
-    //Assert.assertTrue(game.isLegal(game.getPlayerBoard()[0] | (1L << game.getHeightCol()[5])));
-    //Assert.assertTrue(game.isLegal(game.getPlayerBoard()[1] | (1L << game.getHeightCol()[5])));
+
   }
 
   // Es wird geprüft, ob das Spiel korrekt zurückgesetzt wird

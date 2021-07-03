@@ -21,11 +21,11 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 <br>
 
 <h3><span style="color:red">Bedienungshinweise:</h3>
-Zu Beginn des Spieles wird mit den Tasten P und B ausgewählt, 
+Zu Beginn des Spieles wird mit den Tasten `P` und `B` ausgewählt, 
 ob man gegen einen Bot (B) oder gegen einen anderen Player (P) spielen möchte. <br>
-Danach beginnt das Spiel und man kann mit den Tasten 1-7 eine Zeile auswählen, wo der Stein gesetzt werden soll. <br>
-Falls man aus Versehen einen falschen Zug gespielt hat, kann man ihn mit der Taste U rückgängig machen. <br>
-Wenn man das Spiel zurücksetzen möchte, kann man die Taste R drücken und das ganze Spiel wird zurückgesetzt. <br>
+Danach beginnt das Spiel und man kann mit den Tasten `1-7` eine Zeile auswählen, wo der Stein gesetzt werden soll. <br>
+Falls man aus Versehen einen falschen Zug gespielt hat, kann man ihn mit der Taste `U` rückgängig machen. <br>
+Wenn man das Spiel zurücksetzen möchte, kann man die Taste `R` drücken und das ganze Spiel wird zurückgesetzt. <br>
 <br>
 
 <h3><span style="color:red">Dateiübersicht und LOC:</h3>
@@ -44,13 +44,13 @@ C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-Java                             3             28              3            285
+Java                             3             28              3            284
 -------------------------------------------------------------------------------
-SUM:                             3             28              3            285
+SUM:                             3             28              3            284
 -------------------------------------------------------------------------------
 
 LOC: 285
-AL-LOC: 153
+AL-LOC: 152
 AL : 53,68% 
 ```
 <br>
