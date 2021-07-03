@@ -16,7 +16,7 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 <br>
 
 ### Screenshot einer Partie:
-![img.png](img.png)
+![img.png](screenshot.png)
 <br>
 <br>
 
@@ -31,14 +31,19 @@ Wenn man das Spiel zurücksetzen möchte, kann man die Taste `R` drücken und da
 ### Dateiübersicht und LOC:
 ```
 > dir /S /B /A-D . 
-C:\PIS_HU1\app\build.gradle 
-C:\PIS_HU1\app\core.jar 
-C:\PIS_HU1\app\README.md 
-C:\PIS_HU1\app\Pictures 
-C:\PIS_HU1\app\src\main\java\PIS_HU1\Draw.java 
-C:\PIS_HU1\app\src\main\java\PIS_HU1\GameEngine.java 
-C:\PIS_HU1\app\src\main\java\PIS_HU1\GameInterface.java 
-C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java 
+\img.png
+\README.md
+\settings.gradle
+\app\build.gradle
+\app\core.jar
+\app\src\main\java\PIS_HU1\Draw.java
+\app\src\main\java\PIS_HU1\GameEngine.java
+\app\src\main\java\PIS_HU1\GameInterface.java
+\app\src\main\resources\connect-four.png
+\app\src\main\resources\robot.png
+\app\src\main\resources\TitleScreen.png
+\app\src\main\resources\winner.png
+\app\src\test\java\PIS_HU1\AppTest.java
 
 -----------------------------------------------------------------------------------------------
 File                                                        blank        comment           code
@@ -50,8 +55,6 @@ app\src\main\java\pis_hu1\gameinterface.java                    1              0
 SUM:                                                           35              9            284
 -----------------------------------------------------------------------------------------------
 
-LOC: 284
-AL-LOC: 152
 AL : 53,52% 
 ```
 <br>

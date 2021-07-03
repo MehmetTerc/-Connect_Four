@@ -30,7 +30,7 @@ public class AppTest {
         Long.toBinaryString(game.getPlayerBoard()[0]));
   }
 
-  // es wird mehrere Züge geprüft (Warum geht es nicht mit noch mehr zügen)
+  // es wird mehrere Züge geprüft
   @Test
   public void testMoreMove() {
     game.reset();
@@ -75,7 +75,7 @@ public class AppTest {
   // Methode für eine horizontale Viererlinien getestet
   @Test
   public void testHorizontalWin() {
-    // 1000000100000010000001 horizontal win
+    // 1000000100000010000001 Beispiel für ein horizontalen win
     game.getPlayerBoard()[0] = Long.parseLong("1000000100000010000001", 2);
     Assert.assertTrue("Es gibt vier horizontale Steine in Reihe,isWin erkennt dies nicht", game.isWin(game.getPlayerBoard()[0]));
   }
