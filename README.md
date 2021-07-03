@@ -20,8 +20,8 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 <br>
 <br>
 
-<h3><span style="color:red">Bedienungshinweise:</h3>
-Zu Beginn des Spieles wird mit den Tasten ``P`` und `B` ausgewählt, 
+##Bedienungshinweise:
+Zu Beginn des Spieles wird mit den Tasten `P` und `B` ausgewählt, 
 ob man gegen einen Bot (B) oder gegen einen anderen Player (P) spielen möchte. <br>
 Danach beginnt das Spiel und man kann mit den Tasten `1-7` eine Zeile auswählen, wo der Stein gesetzt werden soll. <br>
 Falls man aus Versehen einen falschen Zug gespielt hat, kann man ihn mit der Taste `U` rückgängig machen. <br>
