@@ -20,7 +20,7 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 <br>
 <br>
 
-##Bedienungshinweise:
+## Bedienungshinweise:
 Zu Beginn des Spieles wird mit den Tasten `P` und `B` ausgewählt, 
 ob man gegen einen Bot (B) oder gegen einen anderen Player (P) spielen möchte. <br>
 Danach beginnt das Spiel und man kann mit den Tasten `1-7` eine Zeile auswählen, wo der Stein gesetzt werden soll. <br>
