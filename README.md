@@ -16,7 +16,7 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 <br>
 
 ### Screenshot einer Partie:
-![img.png](screenshot.png)
+![screenshot.png](screenshot.png)
 <br>
 <br>
 
@@ -31,7 +31,7 @@ Wenn man das Spiel zurücksetzen möchte, kann man die Taste `R` drücken und da
 ### Dateiübersicht und LOC:
 ```
 > dir /S /B /A-D . 
-\img.png
+\screenshot.png
 \README.md
 \settings.gradle
 \app\build.gradle
