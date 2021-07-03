@@ -5,7 +5,7 @@ package PIS_HU1;
 
 import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 public class AppTest {
   private GameEngine game = new GameEngine();

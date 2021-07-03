@@ -1,7 +1,7 @@
-<h2><span style="color:red">Vier Gewinnt! (PIS SS 2021)</h2>
+## Vier Gewinnt! (PIS SS 2021)
 <p><strong>Autor:</strong> Mehmet Tercüman, 5296149</p>
 
-<h3><span style="color:red">Beschreibung:</h3>
+### Beschreibung:
 Mein Spiel ist das klassische Vier gewinnt. <br>
 Ziel des Spieles ist es, vier eigene Steine horizontal, diagonal 
 oder waagerecht in eine Linie zu bringen. <br>
@@ -15,21 +15,20 @@ eine Linie mit vier Steinen bilden konnte. (87 Wörter) <br>
 
 <br>
 
-<h3><span style="color:red">Screenshot einer Partie:</h3>
+### Screenshot einer Partie:
 ![img.png](img.png)
 <br>
 <br>
 
 ### Bedienungshinweise:
-Zu Beginn des Spieles wird mit den Tasten `P` und `B` ausgewählt, 
+Zu Beginn des Spieles wird mit den Tasten `B` und `P` ausgewählt, 
 ob man gegen einen Bot (B) oder gegen einen anderen Player (P) spielen möchte. <br>
 Danach beginnt das Spiel und man kann mit den Tasten `1-7` eine Zeile auswählen, wo der Stein gesetzt werden soll. <br>
 Falls man aus Versehen einen falschen Zug gespielt hat, kann man ihn mit der Taste `U` rückgängig machen. <br>
 Wenn man das Spiel zurücksetzen möchte, kann man die Taste `R` drücken und das ganze Spiel wird zurückgesetzt. <br>
 <br>
 
-<h3><span style="color:red">Dateiübersicht und LOC:</h3>
-
+### Dateiübersicht und LOC:
 ```
 > dir /S /B /A-D . 
 C:\PIS_HU1\app\build.gradle 
@@ -41,21 +40,23 @@ C:\PIS_HU1\app\src\main\java\PIS_HU1\GameEngine.java
 C:\PIS_HU1\app\src\main\java\PIS_HU1\GameInterface.java 
 C:\PIS_HU1\app\src\test\java\PIS_HU1\AppTest.java 
 
--------------------------------------------------------------------------------
-Language                     files          blank        comment           code
--------------------------------------------------------------------------------
-Java                             3             28              3            284
--------------------------------------------------------------------------------
-SUM:                             3             28              3            284
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+File                                                        blank        comment           code
+-----------------------------------------------------------------------------------------------
+app\src\main\java\pis_hu1\gameengine.java                      22              9            144
+app\src\main\java\pis_hu1\draw.java                            12              0            132
+app\src\main\java\pis_hu1\gameinterface.java                    1              0              8
+-----------------------------------------------------------------------------------------------
+SUM:                                                           35              9            284
+-----------------------------------------------------------------------------------------------
 
-LOC: 285
+LOC: 284
 AL-LOC: 152
-AL : 53,68% 
+AL : 53,52% 
 ```
 <br>
 
-<h3><span style="color:red">Quellen:</h3>
+### Quellen:
 https://processing.org/reference/ (Abruf: 15.6.21) <br>
 https://github.com/denkspuren/BitboardC4/blob/master/BitboardDesign.md (Abruf: 18.6.21) <br>
 https://www.youtube.com/watch?v=CjldSexfOuU (Abruf 22.6.21) <br>
