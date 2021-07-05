@@ -27,9 +27,13 @@ dependencies {
 
 }
 
-
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(16))
+    }
+}
 
 application {
     // Define the main class for the application.
-    mainClass = 'PIS_HU1.App'
+    mainClass = 'PIS_HU1.Draw'
 }

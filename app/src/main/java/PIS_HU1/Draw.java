@@ -8,6 +8,10 @@ public class Draw extends PApplet {
   GameEngine game = new GameEngine();
   boolean bot = false;
   boolean drawGame = false;
+  PImage icon;
+  PImage winner;
+  PImage botPic;
+  PImage start;
 
   public static void main(String[] args) {
     PApplet.runSketch(new String[] {""}, new Draw());
@@ -18,7 +22,10 @@ public class Draw extends PApplet {
   }
 
   public void setup() {
-    PImage icon = loadImage("app/src/main/resources/connect-four.png");
+    icon =  loadImage("connect-four.png");
+    winner = loadImage("winner.png");
+    botPic = loadImage("robot.png");
+    start = loadImage("TitleScreen.png");
     game.reset();
     mainMenu();
     surface.setTitle("Connect Four !");
@@ -63,7 +70,6 @@ public class Draw extends PApplet {
       }
       y += 100;
     }
-    PImage winner = loadImage("app/src/main/resources/winner.png");
     winner.resize(350, 350);
     if (game.isWin(game.getPlayerBoard()[0])) {
       background(50, 96, 114);
@@ -78,7 +84,6 @@ public class Draw extends PApplet {
       textSize(60);
       fill(255);
       if (bot) {
-        PImage botPic = loadImage("app/src/main/resources/robot.png");
         text("Bot WON", 100, 100);
         botPic.resize(350, 350);
         image(botPic, 150, 250);
@@ -92,7 +97,6 @@ public class Draw extends PApplet {
   }
 
   public void mainMenu() {
-    PImage start = loadImage("app/src/main/resources/TitleScreen.png");
     background(50, 96, 114);
     textSize(60);
     fill(255);

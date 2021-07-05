@@ -49,13 +49,13 @@ Wenn man das Spiel zurücksetzen möchte, kann man die Taste `R` drücken und da
 File                                                        blank        comment           code
 -----------------------------------------------------------------------------------------------
 app\src\main\java\pis_hu1\gameengine.java                      22              9            144
-app\src\main\java\pis_hu1\draw.java                            12              0            132
+app\src\main\java\pis_hu1\draw.java                            12              0            136
 app\src\main\java\pis_hu1\gameinterface.java                    1              0              8
 -----------------------------------------------------------------------------------------------
-SUM:                                                           35              9            284
+SUM:                                                           35              9            288
 -----------------------------------------------------------------------------------------------
 
-AL : 53,52% 
+AL : 52,77% 
 ```
 <br>
 
